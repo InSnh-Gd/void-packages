@@ -1,0 +1,44 @@
+# Template file for zen-browser-bin
+pkgname=zen-browser-bin
+version=1.12.9b
+revision=1
+build_style=meta
+hostmakedepends="gtk-update-icon-cache"
+short_desc="Zen is a firefox-based browser with the aim of pushing your productivity to a new level!"
+maintainer="InSnh-Gd <insnhgd@gmail.com>"
+license="MPL-2.0"
+homepage="https://github.com/zen-browser/desktop"
+distfiles="https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.xz"
+checksum=1a96a4b162e2b851f4e499749acc4c9b3b708164b2494ba45fd4788a3d984c7e
+
+archs="x86_64"
+
+do_install() {
+    vmkdir /opt/${pkgname}
+    vcopy ${wrksrc}/* /opt/${pkgname}
+    
+    vmkdir usr/bin
+    ln -sf /opt/${pkgname}/zen-bin ${DESTDIR}/usr/bin/zen-browser
+    
+    for i in 16x16 32x32 48x48 64x64 128x128; do
+        vmkdir usr/share/icons/hicolor/$i/apps
+        ln -sf /opt/${pkgname}/browser/chrome/icons/default/default${i/x*}.png \
+               ${DESTDIR}/usr/share/icons/hicolor/$i/apps/zen-browser.png
+    done 
+
+    vinstall "${FILESDIR}/zen.desktop" 644 usr/share/applications
+
+    vmkdir usr/share/icons/hicolor/scalable/apps
+    ln -sf /opt/${pkgname}/browser/chrome/icons/default/default128.png \
+           ${DESTDIR}/usr/share/icons/hicolor/scalable/apps/zen-browser.png
+}
+
+post_install() {
+    chmod 755 ${DESTDIR}/opt/${pkgname}/*.so
+    
+    ln -sf /opt/${pkgname}/libmozgtk.so ${DESTDIR}/usr/lib/libmozgtk.so
+}
+
+pre_pkg() {
+    vlicense ${wrksrc}/LICENSE
+}
