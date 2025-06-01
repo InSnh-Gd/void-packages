@@ -18,8 +18,15 @@
 !/etc
 !/srcpkgs
 !/xbps-src
+etc/xbps.d
 etc/conf
 etc/conf.*
 etc/virtual
 etc/xbps.d/custom
 etc/repo-keys
+
+/sources/
+/binpkgs/
+/builddir/
+
+
