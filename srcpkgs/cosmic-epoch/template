@@ -1,0 +1,34 @@
+# Template file for 'cosmic-epoch'
+pkgname=cosmic-epoch
+version=1.0.0.alpha.7
+revision=1
+short_desc="Next generation Cosmic desktop environment"
+maintainer="InSnh-Gd <insnhgd@gmail.com>"
+license="GPL-3.0"
+homepage="https://github.com/pop-os/cosmic-epoch"
+depends="cosmic-applets
+ cosmic-applibrary
+ cosmic-bg
+ cosmic-comp
+ cosmic-edit
+ cosmic-epoch
+ cosmic-files
+ cosmic-greeter
+ cosmic-icons
+ cosmic-launcher
+ cosmic-notifications
+ cosmic-osd
+ cosmic-panel
+ cosmic-randr
+ cosmic-screenshot
+ cosmic-session
+ cosmic-settings
+ cosmic-settings-daemon
+ cosmic-store
+ cosmic-term
+ cosmic-workspaces-epoch
+"
+
+do_install() {
+    :
+}

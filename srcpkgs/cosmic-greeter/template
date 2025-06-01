@@ -1,0 +1,22 @@
+# Template file for 'cosmic-greeter'
+pkgname=cosmic-greeter
+version=1.0.0.alpha.7
+revision=1
+_tag=epoch-${version/.alpha/-alpha}
+build_style=cargo
+configure_args=" --all"
+hostmakedepends="pkg-config just llvm18-devel"
+makedepends="libxkbcommon-devel eudev-libudev-devel pam-devel libinput-devel"
+short_desc="TODO: cosmic-greeter short_desc"
+maintainer="Daniel Martinez <danielmartinez@cock.li>"
+license="GPL-3.0-only"
+homepage="https://github.com/pop-os/cosmic-greeter"
+distfiles="https://github.com/pop-os/cosmic-greeter/archive/refs/tags/${_tag}.tar.gz"
+checksum=4190b8201556e2cdda075016cad91cc07e9f9a3b43f9680910fed8f8fc07894a
+
+export VERGEN_GIT_COMMIT_DATE="${version}_${revision}"
+export VERGEN_GIT_SHA="${version}_${revision}"
+
+do_install() {
+	just --set cargo-target-dir "target/${RUST_TARGET}" --set rootdir ${DESTDIR} --set prefix /usr install
+}

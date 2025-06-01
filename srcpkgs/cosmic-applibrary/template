@@ -1,0 +1,18 @@
+# Template file for 'cosmic-applibrary'
+pkgname=cosmic-applibrary
+version=1.0.0.alpha.7
+revision=1
+_tag=epoch-${version/.alpha/-alpha}
+build_style=cargo
+hostmakedepends="pkg-config just"
+makedepends="libxkbcommon-devel"
+short_desc="TODO: cosmic-applibrary short_desc"
+maintainer="InSnh-Gd <insnhgd@gmail.com>"
+license="GPL-3.0-only"
+homepage="https://github.com/pop-os/cosmic-applibrary"
+distfiles="https://github.com/pop-os/cosmic-applibrary/archive/refs/tags/${_tag}.tar.gz"
+checksum=69b9581c1e0b898dc700ec3fce09a0b69e7da78e1202b70e68794b2397fc6a6f
+
+do_install() {
+	just --set cargo-target-dir "target/${RUST_TARGET}" --set rootdir ${DESTDIR} --set prefix /usr install
+}

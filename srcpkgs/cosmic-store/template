@@ -1,0 +1,18 @@
+# Template file for 'cosmic-store'
+pkgname=cosmic-store
+version=1.0.0.alpha.7
+revision=1
+_tag=epoch-${version/.alpha/-alpha}
+build_style=cargo
+hostmakedepends="pkg-config just"
+makedepends="libxkbcommon-devel openssl-devel flatpak-devel"
+short_desc="TODO: cosmic-store short_desc"
+maintainer="InSnh-Gd <insnhgd@gmail.com>"
+license="GPL-3.0-only"
+homepage="https://github.com/pop-os/cosmic-store"
+distfiles="https://github.com/pop-os/cosmic-store/archive/refs/tags/${_tag}.tar.gz"
+checksum=aca86d79475738c9d4d55a7d51108d8d64eec530f6c33c68e63b2b3655d8ba45
+
+do_install() {
+	just --set cargo-target-dir "target/${RUST_TARGET}" --set rootdir ${DESTDIR} --set prefix /usr install
+}

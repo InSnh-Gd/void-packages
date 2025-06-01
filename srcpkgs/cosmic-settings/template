@@ -1,0 +1,26 @@
+# Template file for 'cosmic-settings'
+pkgname=cosmic-settings
+version=1.0.0.alpha.7
+revision=1
+_tag=epoch-${version/.alpha/-alpha}
+build_style=cargo
+hostmakedepends="pkg-config just git clang llvm which"
+makedepends="libxkbcommon-devel eudev-libudev-devel libinput-devel pipewire-devel"
+short_desc="TODO: cosmic-settings short_desc"
+maintainer="InSnh-Gd <insnhgd@gmail.com>"
+license="GPL-3.0-only"
+homepage="https://github.com/pop-os/cosmic-settings"
+distfiles="https://github.com/pop-os/cosmic-settings/archive/refs/tags/${_tag}.tar.gz"
+checksum=95e632d20cf802fe293014dd9707e65bd7d6ab9e7459957f40b01c928908e34a
+
+do_build() {
+#    git config --global url."git@github.com:".pushInsteadOf "https://github.com"
+    export GIT_CONFIG_KEY_0='url.git@github.com:.pushInsteadOf'
+    export GIT_CONFIG_VALUE_0='https://github.com'
+    export CARGO_NET_GIT_FETCH_WITH_CLI=true
+    cargo build --release
+}
+
+do_install() {
+	just --set cargo-target-dir "target" --set rootdir ${DESTDIR} --set prefix /usr install
+}
