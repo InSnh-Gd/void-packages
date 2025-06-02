@@ -4,15 +4,19 @@ version=1.0.0.alpha.7
 revision=1
 _tag=epoch-${version/.alpha/-alpha}
 build_style=cargo
-hostmakedepends="pkg-config just"
+hostmakedepends="pkg-config just which tar"
 makedepends="libxkbcommon-devel"
 short_desc="TODO: cosmic-notifications short_desc"
 maintainer="InSnh-Gd <insnhgd@gmail.com>"
 license="GPL-3.0-only"
 homepage="https://github.com/pop-os/cosmic-notifications"
 distfiles="https://github.com/pop-os/cosmic-notifications/archive/refs/tags/${_tag}.tar.gz"
-checksum=dd5743c95807497b6cae2ac1a83345b1639e6141d41cf9c768ce720317c79604
+checksum=4a49d0d10a057967fe3f678bbd29ded33b484da34db77fea240d1dd10c089113 
+do_build() {
+	just vendor
+	just build-vendored
+}
 
 do_install() {
-	just --set cargo-target-dir "target/${RUST_TARGET}" --set rootdir ${DESTDIR} --set prefix /usr install
+	just --set rootdir ${DESTDIR} --set prefix /usr install
 }

@@ -1,0 +1,17 @@
+# Template file for 'pop-launcher'
+pkgname=pop-launcher
+version=1.2.4
+revision=1
+build_style=cargo
+hostmakedepends="pkg-config just tar"
+makedepends="libxkbcommon-devel"
+short_desc="TODO: cosmic-launcher short_desc"
+maintainer="InSnh-Gd <insnhgd@gmail.com>"
+license="MPL2.0"
+homepage="https://github.com/pop-os/launcher"
+distfiles="https://github.com/pop-os/launcher/archive/refs/tags/${version}.tar.gz"
+checksum=a84bed75c618a01a1a552f36be323d2d851e37d1845db56125a9c8aa4fed64bb
+
+do_install() {
+	just --set rootdir ${DESTDIR} install
+}

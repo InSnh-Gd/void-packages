@@ -1,0 +1,23 @@
+# Template file for 'xdg-desktop-portal-cosmic'
+pkgname=xdg-desktop-portal-cosmic
+version=1.0.0.alpha.7
+revision=1
+_tag=epoch-${version/.alpha/-alpha}
+build_style=cargo
+hostmakedepends="pkg-config llvm18 clang18"
+makedepends="libxkbcommon-devel libgbm-devel pipewire-devel llvm18-devel
+ glib-devel gstreamer1-devel"
+depends="xdg-desktop-portal"
+short_desc="TODO: xdg-desktop-portal-cosmic short_desc"
+maintainer="InSnh-Gd <insnhgd@gmail.com>"
+license="GPL-3.0-only"
+homepage="https://github.com/pop-os/xdg-desktop-portal-cosmic"
+distfiles="https://github.com/pop-os/xdg-desktop-portal-cosmic/archive/refs/tags/${_tag}.tar.gz"
+checksum=330efa06b12560fcdd0c2238107d31d8f5776d2512c76dab8b9027a640446c60
+
+export VERGEN_GIT_COMMIT_DATE="${version}_${revision}"
+export VERGEN_GIT_SHA="${version}_${revision}"
+
+do_install() {
+	DESTDIR="${DESTDIR}" prefix=/usr CARGO_TARGET_DIR="target/${RUST_TARGET}" make install
+}

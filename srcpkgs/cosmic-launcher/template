@@ -6,6 +6,7 @@ _tag=epoch-${version/.alpha/-alpha}
 build_style=cargo
 hostmakedepends="pkg-config just"
 makedepends="libxkbcommon-devel"
+depends="pop-launcher"
 short_desc="TODO: cosmic-launcher short_desc"
 maintainer="InSnh-Gd <insnhgd@gmail.com>"
 license="GPL-3.0-only"

@@ -4,7 +4,8 @@ version=1.0.0.alpha.7
 revision=1
 short_desc="Next generation Cosmic desktop environment"
 maintainer="InSnh-Gd <insnhgd@gmail.com>"
-license="GPL-3.0"
+license="Public Domain"
+build_style=meta
 homepage="https://github.com/pop-os/cosmic-epoch"
 depends="cosmic-applets
  cosmic-applibrary
@@ -12,7 +13,6 @@ depends="cosmic-applets
  cosmic-comp
  cosmic-edit
  cosmic-epoch
- cosmic-files
  cosmic-greeter
  cosmic-icons
  cosmic-launcher
@@ -27,8 +27,9 @@ depends="cosmic-applets
  cosmic-store
  cosmic-term
  cosmic-workspaces-epoch
+ xdg-desktop-protal-cosmic
 "
-
+# cosmic-files 暂时无法打包
 do_install() {
     :
 }
