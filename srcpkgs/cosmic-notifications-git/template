@@ -1,0 +1,19 @@
+# Template file for 'cosmic-notifications-git'
+pkgname=cosmic-notifications-git
+version=9999
+revision=1
+build_style=cargo
+hostmakedepends="pkg-config just which tar git"
+makedepends="libxkbcommon-devel"
+short_desc="TODO: cosmic-notifications short_desc"
+conflicts="cosmic-notifications"
+replaces="cosmic-notifications"
+maintainer="InSnh-Gd <insnhgd@gmail.com>"
+license="GPL-3.0-only"
+homepage="https://github.com/pop-os/cosmic-notifications"
+distfiles="https://github.com/pop-os/cosmic-notifications/archive/refs/heads/master.zip"
+checksum="93db7299570871e6884093da4e05a756c5a8579a8c0f6ad34abbd92b5221a856"
+
+do_install() {
+	just --set cargo-target-dir "target/${RUST_TARGET}" --set rootdir ${DESTDIR} --set prefix /usr install
+}
