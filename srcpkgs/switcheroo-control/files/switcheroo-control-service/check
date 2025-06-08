@@ -1,0 +1,6 @@
+#!/bin/sh
+# 等待 "dependency-service" 进入运行状态
+while ! sv check gdm >/dev/null; do
+    sleep 1
+done
+exit 0

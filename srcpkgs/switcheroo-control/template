@@ -1,0 +1,65 @@
+# Template file for "switcheroo-control
+pkgname=switcheroo-control
+version=2.6
+revision=1
+build_style=meson
+short_desc="D-Bus service to check the availability of dual-GPU"
+maintainer="InSnh-Gd <insnhgd@gmail.com>"
+license="GPL3"
+hostmakedepends="libgudev-devel pkg-config cmake glib-devel python3-dbus-devel python3-dbusmock"
+depends="python libgudev glib python3-gobject"
+homepage="https://gitlab.freedesktop.org/hadess/switcheroo-control"
+distfiles="https://gitlab.freedesktop.org/hadess/switcheroo-control/-/archive/2.6/switcheroo-control-2.6.tar.gz"
+checksum="b6413630b346aa132fb27ff1ee890061d3e86e0db42a991efe50b98eafd478b7"
+
+do_configure() {
+	: ${meson_cmd:=meson}
+	: ${meson_builddir:=build}
+	: ${meson_crossfile:="${XBPS_WRAPPERDIR}/meson/xbps_meson.cross"}
+
+	if [ "$CROSS_BUILD" ]; then
+		configure_args+=" --cross-file=${meson_crossfile}"
+	fi
+
+	# binutils ar needs a plugin when LTO is used on static libraries, so we
+	# have to use the gcc-ar wrapper that calls the correct plugin.
+	# As seen in https://github.com/mesonbuild/meson/issues/1646 (and its
+	# solution, https://github.com/mesonbuild/meson/pull/1649), meson fixed
+	# issues with static libraries + LTO by defaulting to gcc-ar themselves.
+	# We also force gcc-ar usage in the crossfile above.
+	export AR="gcc-ar"
+
+	# unbuffered output for continuous logging
+	${meson_cmd} setup \
+		--prefix=/usr \
+		--libdir=/usr/lib${XBPS_TARGET_WORDSIZE} \
+		--libexecdir=/usr/libexec \
+		--bindir=/usr/bin \
+		--sbindir=/usr/bin \
+		--includedir=/usr/include \
+		--datadir=/usr/share \
+		--mandir=/usr/share/man \
+		--infodir=/usr/share/info \
+		--localedir=/usr/share/locale \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--sharedstatedir=/var/lib \
+		--buildtype=plain \
+		--auto-features=auto \
+		--wrap-mode=nodownload \
+		-Db_lto=true -Db_ndebug=true \
+		-Db_staticpic=true \
+		-Dpkgconfig.relocatable=false \
+		-Dsystemdsystemunitdir=/usr/lib/systemd \
+		${configure_args} . ${meson_builddir}
+}
+
+do_build(){
+	meson compile -C build
+}
+do_install(){
+	meson install -C build --destdir ${DESTDIR}
+	rm -r ${DESTDIR}/usr/lib/systemd
+	vinstall ${FILESDIR}/${pkgname}-service/run 755 /etc/sv/${pkgname}/ run
+	vinstall ${FILESDIR}/${pkgname}-service/check 755 /etc/sv/${pkgname}/ check
+}
