@@ -1116,9 +1116,9 @@ libSDL_sound-1.0.so.1 SDL_sound-1.0.3_1
 libgtksourceview-2.0.so.0 gtksourceview2-2.10.5_1
 libxdot.so.4 graphviz-libs-2.28.0_6
 libgvpr.so.2 graphviz-libs-2.28.0_6
-libcgraph.so.6 graphviz-libs-2.28.0_6
-libgvc.so.6 graphviz-libs-2.28.0_6
-libcdt.so.5 graphviz-libs-2.28.0_6
+libcgraph.so.7 graphviz-libs-13.0.0_1
+libgvc.so.7 graphviz-libs-13.0.0_1
+libcdt.so.6 graphviz-libs-13.0.0_1
 libpathplan.so.4 graphviz-libs-2.28.0_6
 liblab_gamut.so.1 graphviz-libs-2.40.1_1
 libmowgli-2.so.0 libmowgli-2.1.3_8
@@ -1951,7 +1951,7 @@ libQt5TextToSpeech.so.5 qt5-speech-5.15.2_3
 libQt5Bodymovin.so.5 qt5-lottie-5.15.2_3
 libQt5WebKit.so.5 qt5-webkit-5.6.0_1
 libQt5WebKitWidgets.so.5 qt5-webkit-5.6.0_1
-libx265.so.209 x265-3.6_1
+libx265.so.212 x265-4.0_1
 libQt5Xdg.so.3 libqt5xdg-3.2.0_1
 libQt5XdgIconLoader.so.3 libqt5xdg-3.2.0_1
 libQt6Xdg.so.4 libqtxdg-4.0.0_1
@@ -4512,7 +4512,7 @@ libgrass_gproj.8.3.so grass-8.3.0_1
 libgrass_imagery.8.3.so grass-8.3.0_1
 libgrass_raster.8.3.so grass-8.3.0_1
 libgrass_vector.8.3.so grass-8.3.0_1
-libvpl.so.2 oneVPL-2023.3.1_1
+libvpl.so.2 libvpl-2.14.0_1
 libusrsctp.so.2 usrsctp-0.9.5.0_1
 libdatachannel.so.0.20 libdatachannel-0.20.2_1
 libgeotiff.so.5 libgeotiff-1.7.1_1
@@ -4537,7 +4537,7 @@ libopenrazer.so.0 libopenrazer-0.2.0_1
 libstaroffice-0.0.so.0 libstaroffice-0.0.7_1
 libbox2d.so.2 box2d-2.4.1_1
 libhwy.so.1 highway-1.2.0_1
-libscenefx-0.2.so scenefx-0.2.1_1
+libscenefx-0.3.so scenefx-0.3_1
 libnng.so.1 nng-1.5.2_1
 libsentry.so sentry-native-0.7.7_1
 libjose.so.0 libjose-14_1
