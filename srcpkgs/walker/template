@@ -1,6 +1,6 @@
 # Template file for 'walker'
 pkgname=walker
-version=0.12.23
+version=0.13.11
 revision=1
 build_style=go
 build_helper="gir"
@@ -15,7 +15,7 @@ license="MIT"
 homepage="https://github.com/abenz1267/walker"
 changelog="https://github.com/abenz1267/walker/releases"
 distfiles="https://github.com/abenz1267/walker/archive/v${version}.tar.gz"
-checksum=458058af018103750f3f7e705fc29bd24250a3309295503435bb6e3a3b57a425
+checksum=6d12b40412e91ef4f6e79fa47b6b22daf3ebae2ffe5a583fdf39dd5982f8afed
 make_check=no # no tests and slog warnings make it fail
 
 do_build() {
